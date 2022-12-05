@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Celebrity Scraper</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+  <body>
+    <div class="container mt-5">
+      <h1 class="text-center">Celebrity Scraper</h1>
+
+      <div id="celebrity-container" class="text-center mt-5">
+        <img src="" alt="" id="celebrity-portrait" class="img-fluid" />
+        <h2 id="celebrity-name"></h2>
+      </div>
+
+      <button id="refresh-button" class="btn btn-primary mt-3">Refresh</button>
+    </div>
+
+    <script>
+      const axios = require('axios');
+      const cheerio = require('cheerio');
+
+      const celebrityUrl = 'https://www.imdb.com/name/nm0000141/'; // replace with the URL of the celebrity you want to scrape
+
+      axios.get(celebrityUrl)
+        .then(response => {
+          // Load the HTML into cheerio so we can use jQuery-like syntax to extract the data we want
+          const $ = cheerio.load(response.data);
+
+          // Extract the celebrity's name
+          const celebrityName = $('.itemprop').text();
+          document.getElementById('celebrity-name').innerText = celebrityName;
+
+          // Extract the celebrity's portrait image
+          const portraitImage = $('.image img').attr('src');
+          document.getElementById('celebrity-portrait').src = portraitImage;
+        })
+        .catch(error => {
+          console.log(error);
+        });
+
+      // Add event listener to refresh-button to refresh the page when clicked
+      document.getElementById('refresh-button').addEventListener('click', () => {
+        window.location.reload();
+      });
+    </script>
+  </body>
+</html>
