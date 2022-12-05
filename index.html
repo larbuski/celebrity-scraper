@@ -11,7 +11,7 @@
       <div id="celebrity-container" class="text-center mt-5">
         <img src="" alt="" id="celebrity-portrait" class="img-fluid" />
         <h2 id="celebrity-name"></h2>
-      </div>
+      </div> 
 
       <button id="refresh-button" class="btn btn-primary mt-3">Refresh</button>
     </div>
@@ -20,7 +20,7 @@
       const axios = require('axios');
       const cheerio = require('cheerio');
 
-      const celebrityUrl = 'https://www.imdb.com/name/nm0000141/'; // replace with the URL of the celebrity you want to scrape
+      const celebrityUrl = 'https://www.imdb.com/name/nm0000093/'; // replace with the URL of the celebrity you want to scrape
 
       axios.get(celebrityUrl)
         .then(response => {
