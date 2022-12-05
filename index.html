@@ -11,18 +11,17 @@
       <div id="celebrity-container" class="text-center mt-5">
         <img src="" alt="" id="celebrity-portrait" class="img-fluid" />
         <h2 id="celebrity-name"></h2>
-      </div> 
+      </div>
 
       <button id="refresh-button" class="btn btn-primary mt-3">Refresh</button>
     </div>
 
+    <!-- Include the axios library in your HTML page using a script tag -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
     <script>
-      const axios = require('axios');
-      const cheerio = require('cheerio');
-
-      const celebrityUrl = 'https://www.imdb.com/name/nm0000093/'; // replace with the URL of the celebrity you want to scrape
-
-      axios.get(celebrityUrl)
+      // Use the global axios object to make a GET request to the specified URL
+      axios.get('https://www.imdb.com/name/nm0000141/')
         .then(response => {
           // Load the HTML into cheerio so we can use jQuery-like syntax to extract the data we want
           const $ = cheerio.load(response.data);
@@ -46,3 +45,8 @@
     </script>
   </body>
 </html>
+This code includes the axios library in your HTML page using a script tag, and then uses the global axios object to make a GET request to the IMDB page for the celebrity, and parse the response data using cheerio. It then uses the extracted data to update the celebrity-name and celebrity-portrait elements on the page, and adds an event listener to the refresh-button to refresh the page when clicked. You can use this code as a starting point and modify it to fit your specific needs.
+
+
+
+
